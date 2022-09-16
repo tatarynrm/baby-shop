@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CardDetails from "./components/card/CardDetails";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import Stroller from "./pages/Stroller";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="baby-shop">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="strollers" element={<Stroller />} />
+            <Route path="strollers/:strollerId" element={<CardDetails />} />
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
 
 export default App;
+{
+  /* <div className="container">
+<div className="strollers">
+  {shopSlice.map((item) => (
+    <Card item={item} />
+  ))}
+</div>
+</div> */
+}
