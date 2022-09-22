@@ -1,0 +1,21 @@
+.slick-slider {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.slide {
+  width: 100%;
+  height: 700px;
+
+  img {
+    width: 100%;
+  }
+}
+.slick-arrow {
+  //   background-color: rgb(255, 151, 155);
+  //   background-color: black;
+  font-size: 0rem;
+  width: 1.5rem;
+  height: 5rem;
+}

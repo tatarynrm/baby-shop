@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CardDetails from "./components/card/CardDetails";
+import CarSeatsDetail from "./components/card/CarSeatsDetail";
 import Layout from "./components/Layout";
+import CarSeat from "./pages/CarSeat";
 import Home from "./pages/Home";
 import Stroller from "./pages/Stroller";
 
@@ -14,6 +16,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path="strollers" element={<Stroller />} />
             <Route path="strollers/:strollerId" element={<CardDetails />} />
+            <Route path="car-seats" element={<CarSeat />} />
+            <Route path="car-seats/:carseatId" element={<CarSeatsDetail />} />
           </Route>
         </Routes>
       </Router>

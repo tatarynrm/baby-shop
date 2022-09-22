@@ -8,25 +8,25 @@ const SocialMedia = ({ width }) => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        width: "200px",
+        width: "170px",
       }}
     >
       <SocialIcon
         className="social__icon"
         url="https://instagram.com/roman_noris"
-        bgColor="#C13584"
+        bgColor={"#E49B97"}
         target={"_blank"}
       />
       <SocialIcon
         className="social__icon"
         url="https://www.facebook.com/comfort4baby/"
-        // bgColor="#4267B2"
+        bgColor="#E49B97"
         target={"_blank"}
       />
       <SocialIcon
         className="social__icon"
         url="https://www.telegram.com"
-        // bgColor="#4267B2"
+        bgColor="#E49B97"
         target={"_blank"}
       />
     </div>

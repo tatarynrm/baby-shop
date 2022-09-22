@@ -1,32 +1,39 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Logo from "../logo/Logo";
 import SocialMedia from "../social-media/SocialMedia";
-import { menu } from "../../localDB/localDB";
-// console.log(menu);
+import shopBag from "../../assets/images/svg/bag-custom.svg";
+import phone from "../../assets/images/svg/phone-custom.svg";
+import { useEffect } from "react";
+
 const Header = () => {
-  const width = "200px";
+  const cart = useSelector((state) => state.cart.cart);
+  useEffect(() => {}, [cart]);
   return (
     <header className="header">
       <div className="header__inner container">
         <div className="header__logo">
           <Logo />
         </div>
-        <div className="header__nav">
-          {menu.map((link, i) => {
-            return (
-              <Link
-                className="header__nav-link"
-                to={link.link}
-                key={link.title}
-              >
-                <img src={link.img} alt={link.name} />
-                <span>{link.title}</span>
-              </Link>
-            );
-          })}
+        <div className="header__media">
+          <SocialMedia />
         </div>
-        <SocialMedia width={width} />
+        <div className="header__order">
+          <div className="header__order-item">
+            <img src={shopBag} alt="shop-bag" />
+            {cart.length <= 0 ? (
+              ""
+            ) : (
+              <div className="header__order-count">{cart.length}</div>
+            )}
+          </div>
+          <div className="header__order-item">
+            <a href="tel:+380989578520">
+              <img src={phone} alt="shop-bag" />
+            </a>
+          </div>
+        </div>
         <div className="header__burger">X</div>
       </div>
     </header>

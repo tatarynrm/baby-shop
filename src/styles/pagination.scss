@@ -1,0 +1,36 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  //   background-color: red;
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    width: 30%;
+  }
+  .btn-pagination {
+    background-color: var(--second-color);
+    padding: 1rem;
+    border-radius: 3px;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+  ul,
+  li {
+    list-style: none;
+  }
+
+  .list-group-item {
+    background-color: var(--main-color);
+    width: 3rem;
+    font-size: 3rem;
+    border-radius: 1rem;
+    &.disabled {
+      background-color: var(--second-color);
+    }
+  }
+}

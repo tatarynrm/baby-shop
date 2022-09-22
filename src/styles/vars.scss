@@ -1,8 +1,8 @@
 .container {
-  max-width: 1470px;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 0px 15px;
+  padding: 0px 16px;
 }
 
 img {
@@ -42,4 +42,9 @@ button {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+:root {
+  --main-color: #e49b97;
+  --second-color: #89b9c7;
 }
