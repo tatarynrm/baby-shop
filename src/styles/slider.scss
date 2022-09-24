@@ -4,18 +4,20 @@
   margin: 0 auto;
   cursor: pointer;
 }
+.slick-slide {
+  background-color: rgba(166, 242, 242, 0.3);
+}
 .slide {
   width: 100%;
-  height: 700px;
+  height: 800px;
 
-  img {
-    width: 100%;
+  > img {
+    object-fit: contain;
+    // object-position: top;
   }
 }
 .slick-arrow {
-  //   background-color: rgb(255, 151, 155);
-  //   background-color: black;
-  font-size: 0rem;
-  width: 1.5rem;
-  height: 5rem;
+  // font-size: 0rem;
+  // width: 1.5rem;
+  // height: 5rem;
 }

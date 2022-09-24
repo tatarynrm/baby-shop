@@ -16,16 +16,16 @@ const Header = () => {
         <div className="header__logo">
           <Logo />
         </div>
-        <div className="header__media">
-          <SocialMedia />
-        </div>
+        <div className="header__media">{/* <SocialMedia /> */}</div>
         <div className="header__order">
           <div className="header__order-item">
             <img src={shopBag} alt="shop-bag" />
             {cart.length <= 0 ? (
               ""
             ) : (
-              <div className="header__order-count">{cart.length}</div>
+              <Link to={"shoping-cart"}>
+                <div className="header__order-count">{cart.length}</div>{" "}
+              </Link>
             )}
           </div>
           <div className="header__order-item">

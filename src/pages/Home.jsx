@@ -11,7 +11,6 @@ const Home = () => {
       <div className="home__page ">
         <BodyMenu />
       </div>
-
       <Popup />
     </>
   );

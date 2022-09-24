@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import uniqid from "uniqid";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/shoppingCart/shoppingCartSlice";
+import { addToCart } from "../../redux/slices/shoppingCartSlice";
 import { sendMessageTelegram } from "../../services/telegramServices";
 import outStock from "../../assets/images/out-of-stock/out-of-stock.png";
 import cryingBaby from "../../assets/images/out-of-stock/crying-baby.png";
@@ -17,7 +17,6 @@ const StrollerCard = ({ item }) => {
   const dispatch = useDispatch();
   const addItemToCard = (item) => {
     dispatch(addToCart(item));
-    console.log(item);
   };
   useEffect(() => {}, [item, cart]);
   return (

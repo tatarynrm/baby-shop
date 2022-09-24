@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import firstSlide from "../../assets/images/main-slider-images/first.jpg";
-import secondSlide from "../../assets/images/main-slider-images/second.jpg";
-import thirdSlide from "../../assets/images/main-slider-images/third.jpg";
+import slide from "../../assets/images/main-slider-images/slide1.png";
+import ligero from "../../assets/images/main-slider-images/ligero.png";
 
 export default class SimpleSlider extends Component {
   render() {
@@ -14,26 +13,43 @@ export default class SimpleSlider extends Component {
       slidesToScroll: 1,
       swipeToSlide: true,
       arrows: false,
-      autoplay: true,
-      speed: 2000,
+      // autoplay: true,
+      speed: 1000,
       autoplaySpeed: 4000,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true,
+          },
+        },
+      ],
     };
     return (
       <div>
         <Slider {...settings}>
           <div className="slide">
             <a href="#">
-              <img src={firstSlide} alt="one" />
+              <img src={ligero} alt="one" />
             </a>
           </div>
           <div className="slide">
-            <img src={secondSlide} alt="one" />
+            <img src={slide} alt="one" />
           </div>
           <div className="slide">
-            <img src={thirdSlide} alt="one" />
+            <img src={ligero} alt="one" />
           </div>
           <div className="slide">
-            <img src={firstSlide} alt="one" />
+            <img src={slide} alt="one" />
+          </div>
+          <div className="slide">
+            <img src={slide} alt="one" />
+          </div>
+          <div className="slide">
+            <img src={ligero} alt="one" />
           </div>
         </Slider>
       </div>

@@ -7,9 +7,10 @@ import data2 from "../localDB/data2.json";
 const CarSeat = () => {
   const data = data2.shop.offers.offer;
   const [products, setProducts] = useState([]);
-
+  console.log(data);
   useEffect(() => {
-    setProducts(data);
+    const carSeatsFilter = data.filter((item) => item.categoryId === "59");
+    setProducts(carSeatsFilter);
   }, []);
   return (
     <>
@@ -26,3 +27,6 @@ const CarSeat = () => {
 };
 
 export default CarSeat;
+
+// 59 - автокрісло
+// 23 коляски
