@@ -1,18 +1,56 @@
 .admin {
+  color: white;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  ul,
+  li {
+    list-style: none;
+    text-decoration: none;
+  }
+  .data-grid {
+    color: white;
+    font-size: 1.2rem;
+  }
   width: 100%;
   height: 100vh;
-  background-color: rgb(216, 202, 230);
+  background-color: #234f7f;
   display: flex;
   font-size: 2rem;
+  color: white;
 
   &__sidebar {
     width: 20%;
-    background-color: whitesmoke;
+    padding: 2rem;
+    background-color: #1c2c3d;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     text-align: center;
-    justify-content: center;
-    background-color: rgb(169, 169, 231);
+    align-items: center;
+
+    &-top {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    &-menu ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      color: red;
+    }
+    &-links {
+      font-size: 3rem;
+      display: flex;
+      gap: 2rem;
+    }
+    &-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
   }
 
   &__content {
@@ -35,15 +73,74 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 10px;
+  gap: 100px;
   > div {
     width: 100px;
+    height: 70px;
     border: 1px solid black;
     border-radius: 10px;
+    margin-top: 20px;
   }
 
   &-image {
     width: 100%;
     height: 100%;
+  }
+}
+
+.delete-btn {
+  background-color: red;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.admin__login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: #395b64;
+  font-size: 2rem;
+
+  &-form {
+    background-color: rgb(30, 59, 61);
+    border-radius: 2rem;
+    padding: 5rem;
+    width: 30%;
+    height: 40rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 auto;
+  }
+
+  .form-control {
+    input {
+      width: 300px;
+      height: 50px;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+  }
+  .login-button {
+    background-color: #46c8e2;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+  .login-button:hover {
+    background-color: #347a87;
+    transition: all 0.4s ease;
   }
 }

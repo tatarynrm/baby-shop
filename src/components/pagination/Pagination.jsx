@@ -1,7 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 const Pagination = ({
   blocksPerPage,
   totalProducts,
@@ -17,6 +14,7 @@ const Pagination = ({
     pageNumbers.push(i);
   }
 
+  const dots = "...";
   useEffect(() => {
     let tempNumberOfPage = [...pageNumbers];
     if (currentPage >= 1 && currentPage <= 3) {

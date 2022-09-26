@@ -1,20 +1,15 @@
 import React from "react";
 import { Formik } from "formik";
-const CreateProducts = () => {
+const CreateProduct = () => {
   return (
     <div className="add__products-form">
       <Formik
-        initialValues={{ email: "", password: "" }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-          return errors;
+        initialValues={{
+          name: "",
+          price: "",
+          categoryId: "",
+          description: "",
+          _available: "",
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
@@ -60,4 +55,17 @@ const CreateProducts = () => {
   );
 };
 
-export default CreateProducts;
+export default CreateProduct;
+
+// price: req.body.price,
+// currencyId: req.body.currencyId,
+// categoryId: req.body.categoryId,
+// picture: req.body.picture,
+// name: req.body.name,
+// vendor: req.body.vendor,
+// vendorCode: req.body.vendorCode,
+// description: req.body.description,
+// _id: req.body._id,
+// _available: req.body._available,
+// importedId: req.body.importedId,
+// user: req.userId,
