@@ -27,10 +27,10 @@ const StrollerCard = ({ item }) => {
           onMouseOver={() => setOverPhoto(true)}
           onMouseOut={() => setOverPhoto(false)}
         >
-          {item.picture ? null : (
+          {/* {item.picture ? null : (
             <img className="crying-baby" src={cryingBaby} alt="crying-baby" />
-          )}
-          {item.picture ? (
+          )} */}
+          {item.picture[0] ? (
             <img
               src={
                 overPhoto
@@ -47,7 +47,7 @@ const StrollerCard = ({ item }) => {
         </div>
       </Link>
       <div className="card__desc">
-        <p>{item.name}</p>
+        {item.name}
         <div onClick={() => sendMessageTelegram(item)} className="card__price">
           <span className="card__price-count">
             {item.price} <i>грн</i>

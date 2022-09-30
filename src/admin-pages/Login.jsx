@@ -1,4 +1,11 @@
-import React from "react";
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
+} from "@mui/material";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -6,6 +13,7 @@ import { fetchUserData, selectIsAuth } from "../redux/slices/authSlice";
 const Login = () => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
+  const [showPass, setShowPass] = useState(false);
   const {
     register,
     handleSubmit,
@@ -30,33 +38,36 @@ const Login = () => {
   };
 
   if (isAuth) {
-    {
-      return <Navigate to="/admin-panel" />;
-    }
+    return <Navigate to="/admin-panel" />;
   }
   return (
     <div className="admin__login">
       <div className="admin__login-form">
         <form onSubmit={handleSubmit(onSubmit)} className="login-form">
-          <div className="form-control">
-            <input
+          <FormControl fullWidth={true} variant="standard">
+            <InputLabel sx={{ fontSize: "2rem" }}>Email address</InputLabel>
+            <Input
+              sx={{ color: "white", fontSize: "2rem" }}
+              id="my-input"
               type="email"
-              placeholder="E-mail"
               {...register("email", { required: "Вкажіть електронну адресу" })}
             />
-          </div>
-          <div className="form-control">
-            <input
+          </FormControl>
+          <FormControl fullWidth={true} variant="standard">
+            <InputLabel sx={{ fontSize: "2rem" }} htmlFor="my-input">
+              Password
+            </InputLabel>
+            <Input
+              sx={{ color: "white", fontSize: "2rem" }}
               type="password"
-              placeholder="Password"
               {...register("password", {
                 required: "Вкажіть пароль",
               })}
             />
-          </div>
-          <button className="login-button" type="sumbit">
+          </FormControl>
+          <Button variant="outlined" sx={{ fontSize: "1.2rem" }} type="sumbit">
             Log in
-          </button>
+          </Button>
         </form>
       </div>
     </div>

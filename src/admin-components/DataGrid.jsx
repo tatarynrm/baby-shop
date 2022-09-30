@@ -1,65 +1,67 @@
 import * as React from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, deleteProduct } from "../redux/slices/productsSlice";
+import {
+  fetchProducts,
+  deleteProduct,
+  changeAvailable,
+} from "../redux/slices/productsSlice";
 import { useEffect } from "react";
-import Button from "@mui/material/Button";
+import { useState } from "react";
+import { Switch } from "@mui/material";
+import axios from "../axios";
+import ProductActions from "./ProductActions";
 
 export default function DataTable() {
   const { products } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-  const columns = [
-    {
-      field: "picture",
-      headerName: "Photo",
-      width: 100,
-      editable: true,
-      renderCell: (params) => <img src={params.value[0]} />,
-    },
-    { field: "_id", headerName: "ID", width: 70 },
-    { field: "name", headerName: "Name", width: 200 },
-    { field: "categoryId", headerName: "Category ID", width: 130 },
-    { field: "importedId", headerName: "Imported ID", width: 130 },
-    {
-      field: "price",
-      headerName: "Price",
-      type: "number",
-      width: 100,
-    },
-    {
-      headerName: "Delete",
-      width: 130,
-      editable: true,
-      renderCell: (params) => <button>Delete</button>,
-    },
-    {
-      headerName: "Delete",
-      width: 130,
-      editable: true,
-      renderCell: (params) => <button>Delete</button>,
-    },
-    {
-      headerName: "Delete",
-      width: 130,
-      editable: true,
-      renderCell: (params) => (
-        <Button onClick={() => onClickRemove(params._id)}>Delete</Button>
-      ),
-    },
-    //   { field: "importedId", headerName: "Imported ID", width: 130 },
-    //   { field: "importedId", headerName: "Imported ID", width: 130 },
-  ];
 
+  const dispatch = useDispatch();
   const onClickRemove = (id) => {
     if (window.confirm("Ви впевнені що хочете видалити продукт?")) {
       dispatch(deleteProduct(id));
     }
   };
+  const handleAvailableChange = async (id) => {
+    try {
+      const { data } = await axios.patch(`/products/edit/${id}`);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const columns = [
+    {
+      field: "picture",
+      headerName: "Фото",
+      width: 80,
+      editable: true,
+      renderCell: (params) => <img src={params.value[0]} />,
+    },
+    { field: "_id", headerName: "ID", width: 70, hide: true },
+    { field: "name", headerName: "Назва", width: 350 },
+    { field: "categoryId", headerName: "Категорія", width: 130 },
+    { field: "importedId", headerName: "Imported ID", width: 130, hide: true },
+    { field: "vendor", headerName: "Brand", width: 130 },
+    {
+      field: "price",
+      headerName: "Ціна ГРН",
+      type: "number",
+      width: 140,
+    },
+    {
+      field: "available",
+      headerName: "Наявність",
+      width: 130,
+      renderCell: (params) => <ProductActions {...{ params }} />,
+    },
+  ];
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
   return (
-    <div style={{ height: 700, width: "100%" }}>
+    <div style={{ height: 750, width: "100%" }}>
       <DataGrid
         className="data-grid"
         sx={{
@@ -73,8 +75,10 @@ export default function DataTable() {
         rows={products}
         columns={columns}
         pageSize={10}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
+        rowsPerPageOptions={[10]}
+        // checkboxSelection
+        getRowId={(row) => row._id}
+        key={products._id}
       />
     </div>
   );

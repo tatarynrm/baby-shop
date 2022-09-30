@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import CarSeatCard from "../components/card/CarSeatCard";
 import carseatPhoto from "../assets/images/body-menu/car-seat.webp";
-import data2 from "../localDB/data2.json";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchByCategory } from "../redux/slices/productsSlice";
+import { carseatCategory } from "../constants/categories";
 const CarSeat = () => {
-  const data = data2.shop.offers.offer;
-  const [products, setProducts] = useState([]);
-  console.log(data);
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const carSeatsFilter = data.filter((item) => item.categoryId === "59");
-    setProducts(carSeatsFilter);
+    dispatch(fetchByCategory(carseatCategory));
   }, []);
   return (
     <>
@@ -18,7 +18,7 @@ const CarSeat = () => {
         <img src={carseatPhoto} alt="dsd" />
       </div>
       <div className="strollers container">
-        {products.slice(0, 30).map((item, i) => {
+        {products.map((item, i) => {
           return <CarSeatCard key={i} item={item} />;
         })}
       </div>

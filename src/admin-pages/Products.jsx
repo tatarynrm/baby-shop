@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, deleteProduct } from "../redux/slices/productsSlice";
 import { useEffect } from "react";
 import DataTable from "../admin-components/DataGrid";
-
+import { Button } from "@mui/material";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 const Products = () => {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-
+  console.log(products);
+  const [showCreate, setShowCreate] = useState(false);
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
@@ -20,27 +23,10 @@ const Products = () => {
   return (
     <div className="admin__content">
       <div className="admin__products-list">
-        {/* {products?.map((item) => (
-          <div key={item._id} className="admin-product">
-            <div className="admin-product-image">
-              <img src={item.picture[0]} />
-            </div>
-            <div>{item.importedId}</div>
-            <div>{item.name}</div>
-            <div>{item.price}</div>
-            <div>{item.param.name}</div>
-            <div style={{ height: "auto" }}>{item.param.text}</div>
-            <button
-              onClick={() => onClickRemove(item._id)}
-              className="delete-btn"
-            >
-              Видалити товар
-            </button>
-            <button>Редагувати</button>
-          </div>
-        ))} */}
+        <div className="products-actions"></div>
         <DataTable />
       </div>
+      <Link to="/admin-panel/product/create">Створити новий товар</Link>
     </div>
   );
 };

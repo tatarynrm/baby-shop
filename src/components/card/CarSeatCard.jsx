@@ -35,8 +35,8 @@ const CarSeatCard = ({ item }) => {
             <img
               src={
                 overPhoto
-                  ? item.picture[1]
-                  : item.picture[0] && item.picture === "undefined"
+                  ? item.picture[0]
+                  : item.picture[1] && item.picture === "undefined"
                   ? null
                   : item.picture[0]
               }

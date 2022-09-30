@@ -8,11 +8,26 @@ export const fetchProducts = createAsyncThunk(
     return data;
   }
 );
+// TEST
+export const fetchByCategory = createAsyncThunk(
+  "products/fetchStrollers",
+  async (categoryId) => {
+    const { data } = await axios.get(`/products/category/${categoryId}`);
+    return data;
+  }
+);
 
 export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (id) => {
     axios.delete(`/products/${id}`);
+  }
+);
+
+export const changeAvailable = createAsyncThunk(
+  "products/changeAvailable",
+  async (id) => {
+    axios.patch(`/products/available/${id}`);
   }
 );
 
@@ -23,7 +38,7 @@ export const productSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    // Отримання товарів
+    // Отримання всіх товарів
     [fetchProducts.pending]: (state, action) => {
       state.products = [];
       console.log("pending products");
@@ -33,6 +48,19 @@ export const productSlice = createSlice({
       console.log("fulfiled products --- fullfield");
     },
     [fetchProducts.rejected]: (state, action) => {
+      state.products = [];
+      console.log("rejected products");
+    },
+    // Отримання по категорії
+    [fetchByCategory.pending]: (state, action) => {
+      state.products = [];
+      console.log("pending products");
+    },
+    [fetchByCategory.fulfilled]: (state, action) => {
+      state.products = action.payload;
+      console.log("fulfiled products --- fullfield");
+    },
+    [fetchByCategory.rejected]: (state, action) => {
       state.products = [];
       console.log("rejected products");
     },

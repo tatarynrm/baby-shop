@@ -22,6 +22,8 @@ import PrivateRoutes from "./utils/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchAuthMe } from "./redux/slices/authSlice";
+import ProductEdit from "./admin-pages/ProductEdit";
+import CreateProduct from "./admin-components/CreateProduct";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,7 +46,9 @@ function App() {
             <Route exact path="/admin-panel" element={<LayoutAdmin />}>
               <Route index element={<Admin />} />
               <Route path="products" element={<Products />} />
+              <Route path="products/edit/:id" element={<ProductEdit />} />
               <Route path="users" element={<Users />} />
+              <Route path="product/create" element={<CreateProduct />} />
             </Route>
           </Route>
           <Route path="login" element={<Login />} />
