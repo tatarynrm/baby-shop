@@ -1,32 +1,49 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, deleteProduct } from "../redux/slices/productsSlice";
+import { fetchByCategory } from "../redux/slices/productsSlice";
 import { useEffect } from "react";
 import DataTable from "../admin-components/DataGrid";
-import { Button } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import { categoreis } from "../localDB/categories";
+import { Button } from "@mui/material";
 const Products = () => {
-  const { products } = useSelector((state) => state.products);
+  // const [category, setCategory] = useState(10);
   const dispatch = useDispatch();
-  console.log(products);
-  const [showCreate, setShowCreate] = useState(false);
+  const { products } = useSelector((state) => state.products);
+  const handleChangeCategory = (e) => {
+    const val = e.target.value;
+    dispatch(fetchByCategory(val));
+  };
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchByCategory(10));
   }, []);
 
-  const onClickRemove = (id) => {
-    if (window.confirm("Ви впевнені що хочете видалити продукт?")) {
-      dispatch(deleteProduct(id));
-    }
-  };
   return (
     <div className="admin__content">
-      <div className="admin__products-list">
-        <div className="products-actions"></div>
-        <DataTable />
+      <Button>
+        <Link
+          className="create-product-button"
+          to="/admin-panel/product/create"
+        >
+          Створити новий товар
+        </Link>
+      </Button>
+      <div className="products-category">
+        <select name="category" onChange={(e) => handleChangeCategory(e)}>
+          {categoreis.map((item) => (
+            <option key={item.value} value={item.value}>
+              {item.title}
+            </option>
+          ))}
+        </select>
+        <button onClick={() => handleChangeCategory()}>22 категорія</button>
       </div>
-      <Link to="/admin-panel/product/create">Створити новий товар</Link>
+      <div></div>
+      <div className="admin__products-list">
+        <DataTable products={products} />
+      </div>
     </div>
   );
 };

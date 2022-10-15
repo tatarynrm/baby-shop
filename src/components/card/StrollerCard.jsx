@@ -21,15 +21,15 @@ const StrollerCard = ({ item }) => {
   useEffect(() => {}, [item, cart]);
   return (
     <div className="card" key={uniqid()}>
-      <Link to={item.picture ? `/strollers/${item.vendorCode}` : `/strollers`}>
+      <Link to={item.picture ? `/strollers/${item._id}` : `/strollers`}>
         <div
           className="card__img"
           onMouseOver={() => setOverPhoto(true)}
           onMouseOut={() => setOverPhoto(false)}
         >
-          {/* {item.picture ? null : (
+          {item.picture ? null : (
             <img className="crying-baby" src={cryingBaby} alt="crying-baby" />
-          )} */}
+          )}
           {item.picture[0] ? (
             <img
               src={

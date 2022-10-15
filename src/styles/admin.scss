@@ -180,5 +180,53 @@
       border-radius: 1rem;
       cursor: pointer;
     }
+    .image-button {
+      background-color: #0a1929;
+      color: white;
+      padding: 1rem;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.strollers-category {
+  margin: 0 auto;
+  width: 30%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.home__main-products {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.new-sells {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 50%;
+  // background-color: red;
+  button {
+    padding: 1rem;
+    // border: 1px solid whitesmoke;
+    border-radius: 1rem;
+    width: 10rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: black;
+  }
+  button.active {
+    // background-color: #e49b97;
+    border-bottom: 1px solid black;
+    font-size: 1.3rem;
   }
 }

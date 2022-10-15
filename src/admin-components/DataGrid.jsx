@@ -1,35 +1,10 @@
 import * as React from "react";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProducts,
-  deleteProduct,
-  changeAvailable,
-} from "../redux/slices/productsSlice";
 import { useEffect } from "react";
-import { useState } from "react";
-import { Switch } from "@mui/material";
-import axios from "../axios";
 import ProductActions from "./ProductActions";
 
-export default function DataTable() {
-  const { products } = useSelector((state) => state.products);
-
-  const dispatch = useDispatch();
-  const onClickRemove = (id) => {
-    if (window.confirm("Ви впевнені що хочете видалити продукт?")) {
-      dispatch(deleteProduct(id));
-    }
-  };
-  const handleAvailableChange = async (id) => {
-    try {
-      const { data } = await axios.patch(`/products/edit/${id}`);
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+export default function DataTable({ products }) {
+  useEffect(() => {}, [products]);
   const columns = [
     {
       field: "picture",
@@ -57,9 +32,7 @@ export default function DataTable() {
     },
   ];
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
+  useEffect(() => {}, [products]);
   return (
     <div style={{ height: 750, width: "100%" }}>
       <DataGrid

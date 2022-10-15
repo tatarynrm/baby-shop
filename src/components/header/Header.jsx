@@ -30,7 +30,7 @@ const Header = () => {
               )}
             </div>
             <div className="header__order-item">
-              <a href="tel:+380989578520">
+              <a href="tel:+593939930225">
                 <img src={phone} alt="shop-bag" />
               </a>
             </div>

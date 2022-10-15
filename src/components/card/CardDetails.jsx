@@ -1,29 +1,32 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import strollers from "../../localDB/convertjson.json";
-const data = strollers.shop.offers.offer;
+import { fetchById } from "../../redux/slices/productsSlice";
+import { useDispatch, useSelector } from "react-redux";
 const CardDetails = () => {
-  console.log(data);
-  const { strollerId } = useParams();
-  const product = data.find((item) => item.vendorCode === strollerId);
-  const [currentImg, setCurrentImg] = useState(product.picture[0]);
+  const { id } = useParams();
+  const { products } = useSelector((state) => state.products);
+  const [currentImg, setCurrentImg] = useState(products.picture[0]);
   const regExp = /(<.*?>)/g;
+  console.log(products);
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(fetchById(id));
     window.scrollTo(0, 0);
   }, []);
   const setPicture = (picture) => {
     setCurrentImg(picture);
   };
+
+  console.log(products);
   return (
     <div className="product__details container">
       <div className="product__details-photo">
         <div className="product__details-photo-wrapper">
           <div className="product__details-photo-big">
-            <img role={"presentation"} src={currentImg} alt={product.name} />
+            <img role={"presentation"} src={currentImg} alt={products.name} />
           </div>
           <div className="product__details-photo-small">
-            {product.picture.map((picture, i) => (
+            {products.picture.map((picture, i) => (
               <div
                 onClick={() => setPicture(picture)}
                 className="product__details-photo-small-picture"
@@ -36,26 +39,23 @@ const CardDetails = () => {
         </div>
       </div>
       <div className="product__details-desc">
-        <h2>{product.name}</h2>
+        <h2>{products.name}</h2>
         <div className="product__details-desc-price">
           <div className="price">
-            Ціна: {product.price} <span>UAH</span>
+            Ціна: {products.price} <span>UAH</span>
           </div>
         </div>
         <hr className="" />
-        <h3>{product.description.__cdata.replace(regExp, "")}</h3>
-        {/* <button className="main-btn more-info">Добавити в кошик</button> */}
+
+        <button className="main-btn more-info">Добавити в кошик</button>
         <div className="show-more">Додаткові характеристики</div>
-        {/* <ul className="details">
-          {product.param.map((params, i) => (
-            <li key={i}>
-              {params._name} - {params.__text}
-            </li>
-          ))}
-        </ul> */}
       </div>
     </div>
   );
 };
 
 export default CardDetails;
+
+{
+  /* <h3>{products.description.__cdata.replace(regExp, "")}</h3> */
+}

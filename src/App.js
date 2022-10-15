@@ -23,7 +23,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchAuthMe } from "./redux/slices/authSlice";
 import ProductEdit from "./admin-pages/ProductEdit";
-import CreateProduct from "./admin-components/CreateProduct";
+import CreateProduct from "./admin-pages/CreateProduct";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,7 +36,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="strollers" element={<Stroller />} />
-            <Route path="strollers/:strollerId" element={<CardDetails />} />
+            <Route path="strollers/:id" element={<CardDetails />} />
             <Route path="car-seats" element={<CarSeat />} />
             <Route path="car-seats/:carseatId" element={<CarSeatsDetail />} />
             <Route path="shoping-cart" element={<ShopingCart />} />
@@ -46,7 +46,7 @@ function App() {
             <Route exact path="/admin-panel" element={<LayoutAdmin />}>
               <Route index element={<Admin />} />
               <Route path="products" element={<Products />} />
-              <Route path="products/edit/:id" element={<ProductEdit />} />
+              <Route path="products/edit" element={<ProductEdit />} />
               <Route path="users" element={<Users />} />
               <Route path="product/create" element={<CreateProduct />} />
             </Route>

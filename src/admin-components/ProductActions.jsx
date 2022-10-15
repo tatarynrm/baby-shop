@@ -6,8 +6,10 @@ import Tooltip from "@mui/material/Tooltip";
 import { Stack } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "../redux/slices/productsSlice";
+import { Link, useParams } from "react-router-dom";
 const ProductActions = ({ params }) => {
   const { id } = params;
+  const { productId } = useParams();
   const dispatch = useDispatch();
   const onClickRemove = (id) => {
     if (window.confirm("Ви впевнені що хочете видалити продукт?")) {
@@ -29,11 +31,13 @@ const ProductActions = ({ params }) => {
         </IconButton>
       </Tooltip>
       <Tooltip title="Edit">
-        <IconButton onClick={() => onClickRemove(id)}>
-          <EditIcon
-            sx={{ color: "lightblue", fontSize: "3rem", cursor: "pointer" }}
-          />
-        </IconButton>
+        <Link to="products/edit/:id">
+          <IconButton>
+            <EditIcon
+              sx={{ color: "lightblue", fontSize: "3rem", cursor: "pointer" }}
+            />
+          </IconButton>
+        </Link>
       </Tooltip>
     </Stack>
   );

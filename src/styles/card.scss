@@ -50,12 +50,21 @@
   }
   &__buy {
     // background-color: var(--main-color);
-    background-color: #e49b97;
+    background-color: #e4a082;
+    // background-color: #51888d;
     padding: 10px;
     border-radius: 10px;
     width: 100px;
     cursor: pointer;
+    color: white;
+    font-weight: bold;
     font-size: 1.5rem;
+    transition: all 0.5s ease;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+  &__buy:hover {
+    background-color: #51888d;
+    transition: all 0.5s ease;
   }
 }
 

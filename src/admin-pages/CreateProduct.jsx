@@ -2,14 +2,14 @@ import React, { useState, useRef } from "react";
 import axios from "../axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { categoreis } from "../localDB/categories";
 const CreateProduct = () => {
   const [img, setImg] = useState([]);
   const [values, setValues] = useState({
     picture: [],
     name: "",
     price: "",
-    categoryId: "",
-    currencyId: "",
+    categoryId: "" || 10,
     vendor: "",
     vendorCode: "",
     description: "",
@@ -64,7 +64,7 @@ const CreateProduct = () => {
     try {
       const { data } = axios.post("/products", values);
       notify();
-      console.log(data);
+      console.log(values);
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +72,7 @@ const CreateProduct = () => {
 
   // const notify = () => toast(`Створеноо товар: ${values.name} `);
   const notify = () =>
-    toast.success(`Створеноо товар: ${values.name} `, {
+    toast.success(`Створено товар: ${values.name} `, {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -83,7 +83,7 @@ const CreateProduct = () => {
     });
   return (
     <div className="create-section">
-      <div className="images">
+      <div className="images-create-preview">
         {values.picture.length >= 0
           ? values.picture.map((item, idx) => (
               <div key={item} className="img-preview">
@@ -104,11 +104,10 @@ const CreateProduct = () => {
           onSubmit={(e) => handleCreateProduct(e)}
           className="product-create-update"
         >
-          <div className="form-control">
-            <button onClick={() => inputFileRef.current.click()}>
+          <div className="form-control image-button">
+            <div onClick={() => inputFileRef.current.click()}>
               Завантажити фото
-            </button>
-            <label>Зображення</label>
+            </div>
             <input
               accept="/images"
               type="file"
@@ -139,17 +138,7 @@ const CreateProduct = () => {
               onChange={(e) => setValues({ ...values, price: e.target.value })}
             />
           </div>
-          <div className="form-control">
-            <label>UAH</label>
-            <input
-              type="text"
-              name="currencyId"
-              value={values.currencyId}
-              onChange={(e) =>
-                setValues({ ...values, currencyId: e.target.value })
-              }
-            />
-          </div>
+
           <div className="form-control">
             <label>Imported Id</label>
             <input
@@ -158,18 +147,6 @@ const CreateProduct = () => {
               value={values.importedId}
               onChange={(e) =>
                 setValues({ ...values, importedId: e.target.value })
-              }
-            />
-          </div>
-
-          <div className="form-control">
-            <label>Категорія</label>
-            <input
-              type="text"
-              name="categoryId"
-              value={values.categoryId}
-              onChange={(e) =>
-                setValues({ ...values, categoryId: e.target.value })
               }
             />
           </div>
@@ -206,33 +183,17 @@ const CreateProduct = () => {
               }
             />
           </div>
-          {/* <div className="form-control">
-            <label>Наявність</label>
-            <input type="radio" name="description" />
-            <input type="radio" name="description" />
-          </div> */}
-          <select name="" id="">
-            <option value="1">Каляски</option>
-            <option value="1">Каляски 2 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Автокрісло 0 - 13 кг</option>
-            <option value="1">Автокрісло 9 - 36 кг</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
-            <option value="1">Каляски 3 в 1</option>
+          <select
+            name="categoryId"
+            onChange={(e) =>
+              setValues({ ...values, categoryId: e.target.value })
+            }
+          >
+            {categoreis.map((item, id) => (
+              <option key={item.value} value={item.value}>
+                {item.title}
+              </option>
+            ))}
           </select>
           <button type="submit">Створити продукт</button>
         </form>

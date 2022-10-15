@@ -16,6 +16,10 @@ export const fetchByCategory = createAsyncThunk(
     return data;
   }
 );
+export const fetchById = createAsyncThunk("products/fetchById", async (id) => {
+  const { data } = await axios.get(`/products/${id}`);
+  return data;
+});
 
 export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
@@ -75,6 +79,21 @@ export const productSlice = createSlice({
       console.log(action);
     },
     [deleteProduct.rejected]: (state, action) => {
+      state.products = [...state.products];
+    },
+    // Шукаємо по ID
+    [fetchById.pending]: (state, action) => {
+      console.log("pending");
+    },
+
+    [fetchById.fulfilled]: (state, action) => {
+      // state.products = state.products.filter(
+      //   (obj) => obj._id !== action.meta.arg
+      // );
+      state.products = action.payload;
+      console.log(state.products);
+    },
+    [fetchById.rejected]: (state, action) => {
       state.products = [...state.products];
     },
   },
