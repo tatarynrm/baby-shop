@@ -1,11 +1,14 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://api.comfort4baby.store",
+  baseURL: "http://185.69.155.233:5000",
 });
+// const instance = axios.create({
+//   baseURL: "http://localhost:5000",
+// });
 
 instance.interceptors.request.use((config) => {
-  config.headers.Authorization = window.localStorage.getItem("token");
+  config.headers.Authorization = localStorage.getItem("token");
   return config;
 });
 

@@ -33,7 +33,7 @@ const Login = () => {
       alert("Невдала спроба авторизації");
     }
     if (data.payload.isAdmin === true) {
-      window.localStorage.setItem("token", data.payload.token);
+      localStorage.setItem("token", data.payload.token);
     }
   };
 
