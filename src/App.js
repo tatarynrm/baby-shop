@@ -26,25 +26,29 @@ import ProductEdit from "./admin-pages/ProductEdit";
 import CreateProduct from "./admin-pages/CreateProduct";
 import axios from "./axios";
 function App() {
-  const [userLocation, setUserLocation] = useState({});
   const dispatch = useDispatch();
-  const sucessfulLookup = (position) => {
+  const sucessfulLookup = async (position) => {
     const { latitude, longitude } = position.coords;
-    fetch(
+    const data = await fetch(
       `https://api.bigdatacloud.net/data/reverse-geocode-client?${latitude}&${longitude}&localityLanguage=en`
     )
       .then((response) => response.json())
       .then((data) => {
-        const preData = [];
-        preData.push(data);
-        setUserLocation({
+        const values = {
           country: data.countryName,
           city: data.city,
           counter: 1,
-        });
+        };
+        handleUserLocation(values);
       });
   };
-
+  const handleUserLocation = async (values) => {
+    try {
+      const { data } = await axios.post("/location", values);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
@@ -52,33 +56,6 @@ function App() {
     navigator.geolocation.getCurrentPosition(sucessfulLookup, console.log);
   }, []);
 
-  const handleUserLocation = async () => {
-    // const values = {
-    //   country: userLocation.country,
-    //   city: userLocation.city,
-    //   counter: userLocation.counter,
-    // };
-    const values = {
-      country: "Ukraine",
-      city: "Lviv",
-      counter: 1,
-    };
-    console.log(values);
-    try {
-      const { data } = axios.post("/location", values);
-      console.log("Success");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    if (userLocation) {
-      setTimeout(() => {
-        handleUserLocation();
-      }, 5000);
-    }
-  }, []);
-  console.log(userLocation);
   return (
     <div className="baby-shop">
       <Router>
