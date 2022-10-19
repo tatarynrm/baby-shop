@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://185.69.155.233:5000",
+  baseURL: "https://api.comfort4baby.store",
 });
 // const instance = axios.create({
 //   baseURL: "http://localhost:5000",
