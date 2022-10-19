@@ -29,6 +29,7 @@ const Login = () => {
 
   const onSubmit = async (values) => {
     const data = await dispatch(fetchUserData(values));
+    console.log(data);
     if (!data.payload) {
       alert("Невдала спроба авторизації");
     }

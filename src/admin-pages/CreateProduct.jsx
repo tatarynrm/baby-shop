@@ -45,9 +45,7 @@ const CreateProduct = () => {
       let pictures = [];
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
-        pictures.push(
-          `http://185.69.155.233:5000/uploads/${element.originalname}`
-        );
+        pictures.push(`http://localhost:5000/uploads/${element.originalname}`);
       }
       console.log(pictures);
       setValues({ ...values, picture: pictures });

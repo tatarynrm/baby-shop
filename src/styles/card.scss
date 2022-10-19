@@ -6,10 +6,18 @@
   background-color: white;
   cursor: pointer;
   position: relative;
-
+  text-align: center;
+  align-items: center;
+  a {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
   &__img {
     width: 20rem;
     height: 20rem;
+
     img {
       border-radius: 20px;
     }

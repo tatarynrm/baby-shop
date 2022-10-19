@@ -2,9 +2,21 @@
 @import "./styles/normalize.scss";
 @import "./styles/vars.scss";
 @import "./styles/index.scss";
-
+@font-face {
+  font-family: Porcelian;
+  src: "./assets/fonts/Porcelain.ttf";
+}
+@font-face {
+  font-family: Bahams;
+  src: "./assets/fonts/Bahamas-Regular.ttf";
+}
 html {
   font-size: 10px;
+  font-family: Bahams;
+}
+html {
+  font-size: 10px;
+  font-family: sans-serif;
 }
 
 .block-header {
@@ -53,6 +65,7 @@ html {
   padding: 10px;
   border-radius: 20pxv;
 }
+
 // import React from "react";
 // import { useState } from "react";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
